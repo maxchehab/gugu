@@ -7,20 +7,22 @@
 #define BAUD 9600
 #define MYUBRR FOSC / 16 / BAUD - 1
 
+//0x01 is equal to port 1
+
 int main()
 {
     // Set the pin 1 at port a as output
-    DDRA |= (1 << PA1);
+    DDRA |= 0x01;
 
     while (1)
     {
         // Turn led on by setting corresponding bit high in the PORTA register.
-        PORTA |= (1 << PA1);
+        PORTA |= 0x01;
 
         _delay_ms(500);
 
         // Turn led off by setting corresponding bit low in the PORTA register.
-        PORTA &= ~(1 << PA1);
+        PORTA &= ~0x01;
 
         _delay_ms(500);
     }

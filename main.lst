@@ -20,26 +20,28 @@
    7:main.c        **** #define BAUD 9600
    8:main.c        **** #define MYUBRR FOSC / 16 / BAUD - 1
    9:main.c        **** 
-  10:main.c        **** int main()
-  11:main.c        **** {
+  10:main.c        **** //0x01 is equal to port 1
+  11:main.c        **** 
+  12:main.c        **** int main()
+  13:main.c        **** {
  110               	.LM0:
  111               	.LFBB1:
  112               	/* prologue: function */
  113               	/* frame size = 0 */
  114               	/* stack size = 0 */
  115               	.L__stack_usage = 0
-  12:main.c        ****     // Set the pin 1 at port a as output
-  13:main.c        ****     DDRA |= (1 << PA1);
+  14:main.c        ****     // Set the pin 1 at port a as output
+  15:main.c        ****     DDRA |= 0x01;
  117               	.LM1:
- 118 0000 D19A      		sbi 0x1a,1
+ 118 0000 D09A      		sbi 0x1a,0
  119               	.L2:
-  14:main.c        **** 
-  15:main.c        ****     while (1)
-  16:main.c        ****     {
-  17:main.c        ****         // Turn led on by setting corresponding bit high in the PORTA register.
-  18:main.c        ****         PORTA |= (1 << PA1);
+  16:main.c        **** 
+  17:main.c        ****     while (1)
+  18:main.c        ****     {
+  19:main.c        ****         // Turn led on by setting corresponding bit high in the PORTA register.
+  20:main.c        ****         PORTA |= 0x01;
  121               	.LM2:
- 122 0002 D99A      		sbi 0x1b,1
+ 122 0002 D89A      		sbi 0x1b,0
  123               	.LBB6:
  124               	.LBB7:
  126               	.Ltext1:
@@ -219,13 +221,13 @@
  138               	.LBE7:
  139               	.LBE6:
  141               	.Ltext2:
-  19:main.c        **** 
-  20:main.c        ****         _delay_ms(500);
   21:main.c        **** 
-  22:main.c        ****         // Turn led off by setting corresponding bit low in the PORTA register.
-  23:main.c        ****         PORTA &= ~(1 << PA1);
+  22:main.c        ****         _delay_ms(500);
+  23:main.c        **** 
+  24:main.c        ****         // Turn led off by setting corresponding bit low in the PORTA register.
+  25:main.c        ****         PORTA &= ~0x01;
  143               	.LM4:
- 144 0016 D998      		cbi 0x1b,1
+ 144 0016 D898      		cbi 0x1b,0
  145               	.LBB8:
  146               	.LBB9:
  148               	.Ltext3:
@@ -249,12 +251,12 @@
  170               		.ident	"GCC: (GNU) 4.9.2"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/cchZmB5h.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/cchZmB5h.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/cchZmB5h.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/cchZmB5h.s:5      *ABS*:000000000000003b __RAMPZ__
-     /tmp/cchZmB5h.s:6      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/cchZmB5h.s:7      *ABS*:0000000000000001 __zero_reg__
-     /tmp/cchZmB5h.s:107    .text.startup:0000000000000000 main
+     /tmp/cc1CtvU5.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc1CtvU5.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc1CtvU5.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc1CtvU5.s:5      *ABS*:000000000000003b __RAMPZ__
+     /tmp/cc1CtvU5.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc1CtvU5.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc1CtvU5.s:107    .text.startup:0000000000000000 main
 
 NO UNDEFINED SYMBOLS
