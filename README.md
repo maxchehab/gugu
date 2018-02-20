@@ -1,8 +1,3 @@
 # Gonzaga University Guidance Unit
 
-## Usage
-### Compile
-`make`
-
-### Clean
-`make clean`
+Telemetry software for an AVR ATMEGA1284p chip.
